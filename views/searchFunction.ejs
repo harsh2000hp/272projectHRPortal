@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">Sample Data</div>
+                
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        
+                        <th>Gender</th>
+                        <th>Employee Number</th>
+                        
+                        <th>HireDate</th>
+                        <th>BirthDate</th>
+                        <th>Latest Salary</th>
+                        <th>Action</th>
+                    </tr>
+                    <%
+                    if(sampleData.length > 0)
+                    {
+                        sampleData.forEach(function(data){
+                    %>
+                    <tr>
+                        <td><%= data.first_name %></td>
+                        <td><%= data.last_name %></td>
+                       
+                        <td><%= data.gender %></td>
+                        <td><%= data.emp_no %></td>
+                        <td><%= data.hire_date %></td>
+                        <td><%= data.birth_date %></td>
+                        <td><%= data.salary %></td>
+                        <td>
+                            <a href="/sample_data/edit/<%= data.emp_no %>" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="/sample_data/delete/<%= data.emp_no %>" class="btn btn-danger btn-sm">Delete</a>
+                            
+                        </td>
+                    </tr>
+                    <%
+                        });
+                    }
+                    else
+                    {
+                    %>
+                    <tr>
+                        <td colspan="5">No Data Found</td>
+                    </tr>
+                    <%
+                    }
+                    %>
+                </table>
+            </div>
+        </div>
+    </div>
+
+  </body>
+</html>
