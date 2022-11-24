@@ -10,14 +10,28 @@ const { JSDOM } = jsdom;
 //});
 
 router.get("/", function(request, response, next){
+	function containsNumbers(str) {
+		return /[0-9]/.test(str);
+	  }
+	  
   
 var query = "SELECT * FROM employees WHERE emp_no = ";
   var fullUrl = request.protocol + '://' + request.get('host') + request.originalUrl;
   var fun = fullUrl.split("search=");
   emp_no = fun[1];
-  parseInt(emp_no);
+  if (!containsNumbers(emp_no)) {
+	query = "SELECT * FROM employees WHERE first_name = '"
+	query += emp_no;
+	query += "'";
+	
+  }
+  else {
+	query = "SELECT * FROM employees WHERE emp_no = ";
+	parseInt(emp_no);
   console.log(emp_no);
   query += emp_no;
+  }
+  
 
 
 
